@@ -43,9 +43,11 @@ import argparse
 import sys
 from collections import defaultdict
 import json
+import os
 
 # The domain we are querying.
-domain = 'suitepad.deploy'
+domain = os.getenv('ANSIBLE_HOSTS_DOMAIN', 'suitepad.deploy')
+
 # We sort results in reverse alphabetical order to make parsing easier.
 records = sorted(dns.resolver.query(domain, 'TXT'), reverse=True)
 
